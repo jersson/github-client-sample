@@ -17,7 +17,7 @@ namespace GitHubClientTest
 
         //Then
 
-        Assert.True(result.Length > 0);
+        Assert.True(result.ToString().Length > 0);
         }
         
     }

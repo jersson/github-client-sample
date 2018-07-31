@@ -6,18 +6,17 @@ namespace GitHubClient
 {
     public class GitHubConnector
     {
-        public string GetUserInformation(string username){
+        public GitHubUserInformation GetUserInformation(string username){
 
             var client = new RestClient("https://api.github.com/");
-            var request = new RestRequest("users/{username}", RestSharp.Method.GET);
+            var request = new RestRequest("users/{username}", Method.GET);
 
             request.AddUrlSegment("username", username);
 
 
-            IRestResponse response = client.Execute(request);
-            var content = response.Content; 
+            var response = client.Execute<GitHubUserInformation>(request);
 
-            return content;
+            return response.Data;
         }
     }
 }
