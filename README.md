@@ -1,4 +1,5 @@
 # github-client-sample
+![.NET Core](https://github.com/jersson/github-client-sample/workflows/GitHubClient%20Sample/badge.svg?branch=master)
 This is a dotnetcore library I've created as an example to connect and get github information. It's kinda one of my pet projects :innocent:
 
 ## what's the folder structure?
