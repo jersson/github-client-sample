@@ -10,15 +10,16 @@ namespace GitHubClientTest
         [Fact]
         public void GetUserInformation()
         {
-        //Given
-        var connector = new GitHubConnector();
-        //When
-        var result = connector.GetUserInformation("jersson");
+            //Given
+            var connector = new GitHubConnector();
 
-        //Then
+            //When
+            var username = "jersson";
+            var result = connector.GetUserInformation(username);
 
-        Assert.True(result.ToString().Length > 0);
+            //Then
+            Assert.Equal(username, result.login);
         }
-        
+
     }
 }
