@@ -3,29 +3,13 @@
 
 This is a dotnetcore library I've created as an example to connect and get github information. It's kinda one of my pet projects :innocent:
 
-## What does the code do?
-I've created a connector to the [GitHub API](https://developer.github.com/v3/), I'm using the [RestSharp](http://restsharp.org/getting-started/#basic-usage) library for get the information that I need to consume:
-```c#
-public GitHubUserInformation GetUserInformation(string username)
-{
-    var client = new RestClient("https://api.github.com/");
-    var request = new RestRequest("users/{username}", Method.GET);
-
-    request.AddUrlSegment("username", username);
-
-    var response = client.Execute<GitHubUserInformation>(request);
-
-    return response.Data;
-}
-``` 
-
-## How's the folder structure?
+## What's the folder structure?
 ```
 .
 ├── GitHubClient
 │   ├── GitHubClient.csproj
 │   ├── GitHubConnector.cs
-│   └── GitHubUserInformation.cs
+│   └── Types.cs
 ├── GitHubClientTest
 │   ├── GitHubClientTest.csproj
 │   └── GitHubConnectorTest.cs
@@ -36,7 +20,36 @@ public GitHubUserInformation GetUserInformation(string username)
 └── github-client-sample.sln
 ```
 
-## how to build the code?
+## What does the code do?
+I've created a connector to the [GitHub API](https://developer.github.com/v3/), I'm using the [RestSharp](http://restsharp.org/getting-started/#basic-usage) library for get the information that I need to consume.
+
+The `GitHubConnector` class contains all you need to get the required information.
+```c#
+public class GitHubConnector
+{
+    private IRestClient _client { get; set; }
+
+    public GitHubConnector(): this(new RestClient()) {}
+
+    public GitHubConnector(IRestClient client){
+        var uri = new Uri("https://api.github.com/");
+
+        _client =  client;
+        _client.BaseUrl = uri;
+    }
+    public GitHubUserInformation GetUserInformation(string username)
+    {
+        var request = new RestRequest("users/{username}", Method.GET);
+        request.AddUrlSegment("username", username);
+
+        var response = _client.Execute<GitHubUserInformation>(request);
+
+        return response.Data;
+    }
+}
+``` 
+
+## how to compile the code?
 You can use the `dotnet build` command in any folder, even in the root folder
 ```
 Build succeeded.
