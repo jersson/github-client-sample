@@ -3,7 +3,23 @@
 
 This is a dotnetcore library I've created as an example to connect and get github information. It's kinda one of my pet projects :innocent:
 
-## what's the folder structure?
+## What does the code do?
+I've created a connector to the [GitHub API](https://developer.github.com/v3/), I'm using the [RestSharp](http://restsharp.org/getting-started/#basic-usage) library for get the information that I need to consume:
+```c#
+public GitHubUserInformation GetUserInformation(string username)
+{
+    var client = new RestClient("https://api.github.com/");
+    var request = new RestRequest("users/{username}", Method.GET);
+
+    request.AddUrlSegment("username", username);
+
+    var response = client.Execute<GitHubUserInformation>(request);
+
+    return response.Data;
+}
+``` 
+
+## How's the folder structure?
 ```
 .
 ├── GitHubClient
@@ -53,5 +69,7 @@ $ dotnet test
 Test Run Successful.
 Total tests: 1
      Passed: 1
- Total time: 2.0739 Seconds
+ Total time: 1.0996 Seconds
 ```
+
+I'm using [**xUnit**](https://xunit.net/docs/getting-started/netcore/cmdline) for the test cases I've written and [**moq**](https://github.com/Moq/moq4/wiki/Quickstart) to mock the use of the `RestClient` object, this is a really [interesting post](https://softchris.github.io/pages/dotnet-moq.html) about moq. If you want to read about dependency injection, you can go to [this post](https://www.c-sharpcorner.com/UploadFile/85ed7a/dependency-injection-in-C-Sharp/).

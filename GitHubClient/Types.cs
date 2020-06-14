@@ -1,6 +1,6 @@
 using System.Text;
 
-namespace GitHubClient
+namespace GitHubClient.Types
 {
     public class GitHubUserInformation
     {
@@ -39,5 +39,10 @@ namespace GitHubClient
             var result = builder.ToString().Trim();
             return result;
         }
+    }
+
+    public interface GitHubClientInterface
+    {
+        
     }
 }

@@ -1,6 +1,7 @@
 ﻿using System;
 
 using GitHubClient;
+using GitHubClient.Types;
 
 
 namespace GitHubConsoleDemo
