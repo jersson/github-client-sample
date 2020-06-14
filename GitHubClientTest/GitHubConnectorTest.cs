@@ -4,7 +4,8 @@ using Xunit;
 using Moq;
 using RestSharp;
 using GitHubClient;
-using GitHubClient.Types;
+
+using Newtonsoft.Json;
 
 
 namespace GitHubClientTest
@@ -16,15 +17,17 @@ namespace GitHubClientTest
         {
             //Given
             var mockRestClient = new Mock<RestSharp.RestClient>();
-            var response = new RestSharp.RestResponse<GitHubUserInformation>();
-            var userInformation = new GitHubUserInformation();
+            var response = new RestSharp.RestResponse();
             var username = "jersson";
-            
-            userInformation.login = username;
-            response.Data = userInformation;
+            dynamic fakeUserInformation = new
+            {
+                login = username
+            };
+
+            response.Content = JsonConvert.SerializeObject(fakeUserInformation);
 
             mockRestClient.Setup(m => 
-                m.Execute<GitHubUserInformation>(It.IsAny<RestRequest>()))
+                m.Execute(It.IsAny<RestRequest>()))
                 .Returns(response);
 
             var connector = new GitHubConnector(mockRestClient.Object);
@@ -33,9 +36,9 @@ namespace GitHubClientTest
             var result = connector.GetUserInformation(username);
 
             //Then
-            Assert.Equal(username, result.login);
+            Assert.Equal(username, result.Login);
             mockRestClient.Verify(m => 
-                m.Execute<GitHubUserInformation>(It.IsAny<RestRequest>()), Times.Exactly(1));
+                m.Execute(It.IsAny<RestRequest>()), Times.Exactly(1));
         }
 
     }

@@ -4,26 +4,22 @@ namespace GitHubClient.Types
 {
     public class GitHubUserInformation
     {
-        public GitHubUserInformation()
-        {
 
-        }
+        public string Login { get; set; }
 
-        public string login { get; set; }
-    
-        public string name { get; set; }
+        public string FullName { get; set; }
 
-        public string company { get; set; }
-    
-        public string blog { get; set; }
-    
-        public string html_url { get; set; }
+        public string Company { get; set; }
 
-        public string public_repos { get; set; }
-    
-        public string created_at { get; set; }
-    
-        public string updated_at { get; set; }
+        public string Blog { get; set; }
+
+        public string GitHubPage { get; set; }
+
+        public string PublicRepos { get; set; }
+
+        public string CreationDate { get; set; }
+
+        public string LastUpdate { get; set; }
 
         public override string ToString()
         {
@@ -35,14 +31,9 @@ namespace GitHubClient.Types
                 builder.AppendFormat("* {0}: {1}", prop.Name, prop.GetValue(this));
                 builder.AppendLine();
             }
-
+            
             var result = builder.ToString().Trim();
             return result;
         }
-    }
-
-    public interface GitHubClientInterface
-    {
-        
     }
 }
