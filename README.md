@@ -3,7 +3,14 @@
 
 This is a dotnetcore library I've created as an example to connect and get github information. It's kinda one of my pet projects :innocent:
 
-## What's the folder structure?
+## Summary
+- [what's the folder structure?](#whats-the-folder-structure)
+- [what does the code do?](#what-does-the-code-do)
+- [how to compile the code?](#how-to-compile-the-code)
+- [how to run the code?](#how-to-run-the-code)
+- [how to test the code?](#how-to-test-the-code)
+
+## what's the folder structure?
 ```
 .
 ├── GitHubClient
@@ -20,7 +27,7 @@ This is a dotnetcore library I've created as an example to connect and get githu
 └── github-client-sample.sln
 ```
 
-## What does the code do?
+## what does the code do?
 I've created a connector to the [GitHub API](https://developer.github.com/v3/), I'm using the [RestSharp](http://restsharp.org/getting-started/#basic-usage) library for get the information I need to consume and the [Json.NET](https://www.newtonsoft.com/json) library to serialize it.
 
 The `GitHubConnector` class contains all you need to get the required information.
