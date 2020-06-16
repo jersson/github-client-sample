@@ -21,7 +21,8 @@ namespace GitHubClientTest
             var username = "jersson";
             dynamic fakeUserInformation = new
             {
-                login = username
+                login = username, 
+                twitter_username = username
             };
 
             response.Content = JsonConvert.SerializeObject(fakeUserInformation);

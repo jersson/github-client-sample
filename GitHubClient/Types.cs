@@ -20,6 +20,7 @@ namespace GitHubClient.Types
         public string CreationDate { get; set; }
 
         public string LastUpdate { get; set; }
+        public string Twitter { get; set; }
 
         public override string ToString()
         {

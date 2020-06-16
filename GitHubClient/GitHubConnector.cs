@@ -34,7 +34,8 @@ namespace GitHubClient
                 GitHubPage = gitHubObject.html_url, 
                 PublicRepos = gitHubObject.public_repos,
                 CreationDate = gitHubObject.created_at,
-                LastUpdate = gitHubObject.updated_at
+                LastUpdate = gitHubObject.updated_at,
+                Twitter = String.Format("@{0}",gitHubObject.twitter_username)
             };
 
             return result;
