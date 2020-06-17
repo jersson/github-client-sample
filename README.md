@@ -1,5 +1,5 @@
 # github-client-sample
-![.NET Core](https://github.com/jersson/github-client-sample/workflows/GitHubClient%20Sample/badge.svg?branch=master)
+![.NET Core](https://github.com/jersson/github-client-sample/workflows/GitHubClient%20Sample/badge.svg?branch=master) [![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=jersson_github-client-sample&metric=alert_status)](https://sonarcloud.io/dashboard?id=jersson_github-client-sample)
 
 This is a dotnetcore library I've created as an example to connect and get github information. It's kinda one of my pet projects :innocent:
 
@@ -24,7 +24,8 @@ This is a dotnetcore library I've created as an example to connect and get githu
 │   ├── GitHubConsoleDemo.csproj
 │   └── Program.cs
 ├── README.md
-└── github-client-sample.sln
+├── github-client-sample.sln
+└── sonar-project.properties
 ```
 
 ## what does the code do?
@@ -60,7 +61,8 @@ public class GitHubConnector
             GitHubPage = gitHubObject.html_url, 
             PublicRepos = gitHubObject.public_repos,
             CreationDate = gitHubObject.created_at,
-            LastUpdate = gitHubObject.updated_at
+            LastUpdate = gitHubObject.updated_at, 
+            Twitter = String.Format("@{0}",gitHubObject.twitter_username)
         };
 
         return result;
@@ -90,7 +92,8 @@ Hello jersson this is your GitHub information:
 * GitHubPage: https://github.com/jersson
 * PublicRepos: 12
 * CreationDate: 02/20/2012 01:07:28
-* LastUpdate: 06/13/2020 04:57:14
+* LastUpdate: 06/16/2020 16:08:29
+* Twitter: @jersson
 ```
 
 ## how to test the code?
