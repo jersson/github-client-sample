@@ -20,7 +20,7 @@ jobs:
       with:
         dotnet-version: 3.0.100
       env:
-        SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
     - name: Setup JDK
       uses: actions/setup-java@v1
       with:
