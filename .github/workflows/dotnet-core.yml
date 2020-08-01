@@ -32,7 +32,8 @@ jobs:
     - name: Install dependencies
       run: dotnet restore
     - name: Begin scanner
-      run: echo `dotnet sonarscanner begin /k:\"jersson_github-client-sample\" /d:sonar.host.url=\"https://sonarcloud.io\" /o:\"jersson\" /d:sonar.login=\"$SONAR_TOKEN\" /d:sonar.exclusions=\"**/**/.nuget/**, **/obj/**, **/bin/**\" /d:sonar.language=\"cs\"`
+      run: echo `dotnet sonarscanner begin /k:\"jersson_github-client-sample\" /d:sonar.host.url=\"https://sonarcloud.io\" /o:\"jersson\" /d:sonar.login=\"$SONAR_TOKEN\" /d:sonar.language=\"cs\"`
+      # run: echo `dotnet sonarscanner begin /k:\"jersson_github-client-sample\" /d:sonar.host.url=\"https://sonarcloud.io\" /o:\"jersson\" /d:sonar.login=\"$SONAR_TOKEN\" /d:sonar.exclusions=\"**/**/.nuget/**, **/obj/**, **/bin/**\" /d:sonar.language=\"cs\"`
       # run: dotnet sonarscanner begin /k:"jersson_github-client-sample" /d:sonar.host.url="https://sonarcloud.io" /o:"jersson" /d:sonar.login=$SONAR_TOKEN /d:sonar.exclusions="**/**/.nuget/**, **/obj/**, **/bin/**" /d:sonar.language="cs"
     - name: Build
       run: dotnet build --configuration Release --no-restore
