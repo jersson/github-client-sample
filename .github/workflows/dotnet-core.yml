@@ -13,8 +13,6 @@ jobs:
 
     steps:
     - uses: actions/checkout@v2
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
     - name: Setup .NET Core
       uses: actions/setup-dotnet@v1
       with:
@@ -38,5 +36,5 @@ jobs:
     - name: End scanner
       # run: echo `dotnet sonarscanner end /d:sonar.login=\"$SONAR_TOKEN\"`
       run: |
-        GITHUB_TOKEN=${{ secrets.GITHUB_TOKEN }}
+        export GITHUB_TOKEN=${{ secrets.GITHUB_TOKEN }}
         dotnet sonarscanner end /d:sonar.login="${{ secrets.SONAR_TOKEN }}"
