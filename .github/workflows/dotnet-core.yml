@@ -32,13 +32,14 @@ jobs:
     - name: Install dependencies
       run: dotnet restore
     - name: Begin scanner
-      run: dotnet sonarscanner begin /k:"jersson_github-client-sample" /d:sonar.host.url="https://sonarcloud.io" /o:"jersson" /d:sonar.login=$SONAR_TOKEN /d:sonar.exclusions="**/**/.nuget/**, **/obj/**, **/bin/**" /d:sonar.language="cs"
+      run: echo `dotnet sonarscanner begin /k:\"jersson_github-client-sample\" /d:sonar.host.url=\"https://sonarcloud.io\" /o:\"jersson\" /d:sonar.login=\"$SONAR_TOKEN\" /d:sonar.exclusions=\"**/**/.nuget/**, **/obj/**, **/bin/**\" /d:sonar.language=\"cs\"`
+      # run: dotnet sonarscanner begin /k:"jersson_github-client-sample" /d:sonar.host.url="https://sonarcloud.io" /o:"jersson" /d:sonar.login=$SONAR_TOKEN /d:sonar.exclusions="**/**/.nuget/**, **/obj/**, **/bin/**" /d:sonar.language="cs"
     - name: Build
       run: dotnet build --configuration Release --no-restore
     - name: Test
       run: dotnet test --no-restore --verbosity normal
     - name: End scanner
-      run: dotnet sonarscanner end /d:sonar.login=$SONAR_TOKEN
+      run: echo `dotnet sonarscanner end /d:sonar.login=\"$SONAR_TOKEN\"`
     # - name: SonarCloud Scan
     #   uses: sonarsource/sonarcloud-github-action@master
     #   env:
