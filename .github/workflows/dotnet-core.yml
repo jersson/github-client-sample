@@ -20,21 +20,18 @@ jobs:
     - name: Setup JDK
       uses: actions/setup-java@v1
       with:
-        java-version: '14.0.1' # The JDK version to make available on the path.
-        java-package: jdk # (jre, jdk, or jdk+fx) - defaults to jdk
-        architecture: x64 # (x64 or x86) - defaults to x64
+        java-version: '14.0.1'
     - name: Install sonar scanner
       run: dotnet tool install --global dotnet-sonarscanner --version 4.10.0
     - name: Install dependencies
       run: dotnet restore
     - name: Begin scanner
-      run: dotnet sonarscanner begin /k:"jersson_github-client-sample" /d:sonar.host.url="https://sonarcloud.io" /o:"jersson" /d:sonar.login="${{ secrets.SONAR_TOKEN }}" /d:sonar.language="cs"
+      run: dotnet sonarscanner begin /k:"${{ secrets.SONAR_PROJECT_KEY }}" /d:sonar.host.url="${{ secrets.SONAR_HOST_URL }}" /o:"${{ secrets.SONAR_ORGANIZATION_KEY }}" /d:sonar.login="${{ secrets.SONAR_TOKEN }}" /d:sonar.language="cs"
     - name: Build
       run: dotnet build --configuration Release --no-restore
     - name: Test
       run: dotnet test --no-restore --verbosity normal
     - name: End scanner
-      # run: echo `dotnet sonarscanner end /d:sonar.login=\"$SONAR_TOKEN\"`
       run: |
         export GITHUB_TOKEN=${{ secrets.GITHUB_TOKEN }}
         dotnet sonarscanner end /d:sonar.login="${{ secrets.SONAR_TOKEN }}"
