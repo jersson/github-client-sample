@@ -1,5 +1,7 @@
 # github-client-sample
-![.NET Core](https://github.com/jersson/github-client-sample/workflows/GitHubClient%20Sample/badge.svg?branch=master) [![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=jersson_github-client-sample&metric=alert_status)](https://sonarcloud.io/dashboard?id=jersson_github-client-sample)
+![.NET Core](https://github.com/jersson/github-client-sample/workflows/GitHubClient%20Sample/badge.svg?branch=master)
+[![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=jersson_github-client-sample&metric=alert_status)](https://sonarcloud.io/dashboard?id=jersson_github-client-sample)
+[![Coverage](https://sonarcloud.io/api/project_badges/measure?project=jersson_github-client-sample&metric=coverage)](https://sonarcloud.io/dashboard?id=jersson_github-client-sample)
 
 This is a dotnetcore library I've created as an example to connect and get github information. It's kinda one of my pet projects :innocent:
 
