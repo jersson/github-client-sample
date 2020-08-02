@@ -39,3 +39,4 @@ msbuild.wrn
 # custom
 *.log
 .sonarqube
+coverage.opencover.xml
