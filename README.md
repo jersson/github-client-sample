@@ -3,7 +3,7 @@
 [![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=jersson_github-client-sample&metric=alert_status)](https://sonarcloud.io/dashboard?id=jersson_github-client-sample)
 [![Coverage](https://sonarcloud.io/api/project_badges/measure?project=jersson_github-client-sample&metric=coverage)](https://sonarcloud.io/dashboard?id=jersson_github-client-sample)
 
-This is a dotnetcore library I've created as an example to connect and get github information. It's kinda one of my pet projects :innocent:
+I've created this dotnetcore library as an example to show how to get github information. It's kinda one of my pet projects so please, be nice :innocent:
 
 ## Summary
 - [what's the folder structure?](#whats-the-folder-structure)
@@ -11,6 +11,7 @@ This is a dotnetcore library I've created as an example to connect and get githu
 - [how to compile the code?](#how-to-compile-the-code)
 - [how to run the code?](#how-to-run-the-code)
 - [how to test the code?](#how-to-test-the-code)
+- [about the sonar integration](#about-the-sonar-integration)
 
 ## what's the folder structure?
 ```
@@ -108,3 +109,13 @@ Total tests: 1
 ```
 
 I'm using [**xUnit**](https://xunit.net/docs/getting-started/netcore/cmdline) for the test cases I've written and [**moq**](https://github.com/Moq/moq4/wiki/Quickstart) to mock the use of the `RestClient` object, this is a really [interesting post](https://softchris.github.io/pages/dotnet-moq.html) about moq. If you want to read about dependency injection, you can go to [this post](https://www.c-sharpcorner.com/UploadFile/85ed7a/dependency-injection-in-C-Sharp/).
+
+## about the Sonar integration
+The last thing I've added to this project is the feature to send the information to a Sonar server. This is kinda open source project so I'm using the free access to [SonarSource](https://sonarcloud.io/dashboard?id=jersson_github-client-sample) but you can make the commercial way or install it locally (I mean, in your cloud) 
+
+You can check the [workflow file](.github/workflows/dotnet-core.yml) I've made using [GitHub Actions](https://github.com/features/actions), I thing it's easy to understand and of course, run it, but if you want to use it, don't forget to define at least these [GitHub Secrets](https://docs.github.com/en/actions/configuring-and-managing-workflows/creating-and-storing-encrypted-secrets):
+
+- SONAR_HOST_URL
+- SONAR_ORGANIZATION_KEY
+- SONAR_PROJECT_KEY
+- SONAR_TOKEN
