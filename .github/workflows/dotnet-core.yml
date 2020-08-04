@@ -28,7 +28,7 @@ jobs:
     - name: Test
       run: dotnet test --no-restore --verbosity normal /p:CollectCoverage=true /p:CoverletOutputFormat=opencover
     - name: Prepare Sonar scaner
-      run: dotnet sonarscanner begin /k:"${{ secrets.SONAR_PROJECT_KEY }}" /d:sonar.host.url="${{ secrets.SONAR_HOST_URL }}" /o:"${{ secrets.SONAR_ORGANIZATION_KEY }}" /d:sonar.login="${{ secrets.SONAR_TOKEN }}" /d:sonar.language="cs" /d:sonar.cs.opencover.reportsPaths="./GitHubClientTest/coverage.opencover.xml" /d:sonar.exclusions="./GitHubConsoleDemo/**/**"
+      run: dotnet sonarscanner begin /k:"${{ secrets.SONAR_PROJECT_KEY }}" /d:sonar.host.url="${{ secrets.SONAR_HOST_URL }}" /o:"${{ secrets.SONAR_ORGANIZATION_KEY }}" /d:sonar.login="${{ secrets.SONAR_TOKEN }}" /d:sonar.language="cs" /d:sonar.cs.opencover.reportsPaths="./GitHubClientTest/coverage.opencover.xml" /d:sonar.exclusions="./GitHubConsoleDemo/**.**"
     - name: Build
       run: dotnet build --configuration Release --no-restore
     - name: Send information to Sonar host
