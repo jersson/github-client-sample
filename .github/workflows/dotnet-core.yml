@@ -16,14 +16,14 @@ jobs:
     - name: Setup .NET Core
       uses: actions/setup-dotnet@v1
       with:
-        dotnet-version: 3.1.302
+        dotnet-version: 5.0.x
     - name: Setup JDK
       uses: actions/setup-java@v1
       with:
         java-version: '14.0.1'
     - name: Install dependencies
       run: |
-        dotnet tool install --global dotnet-sonarscanner --version 4.10.0
+        dotnet tool install --global dotnet-sonarscanner --version 5.3.1
         dotnet restore
     - name: Test
       run: dotnet test --no-restore --verbosity normal /p:CollectCoverage=true /p:CoverletOutputFormat=opencover
