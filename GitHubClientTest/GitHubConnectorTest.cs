@@ -40,7 +40,7 @@ namespace GitHubClientTest
                 FullName = fakeUserInformation.name,
                 Company = fakeUserInformation.company,
                 Blog = fakeUserInformation.blog,
-                Twitter = $"@{fakeUserInformation.twitter_username}",
+                TwitterAccount = fakeUserInformation.twitter_username,
                 GitHubPage = fakeUserInformation.html_url,
                 PublicRepos = fakeUserInformation.public_repos,
                 CreationDate = fakeUserInformation.created_at,
@@ -63,7 +63,7 @@ namespace GitHubClientTest
             Assert.Equal(expectedUser.FullName, result.FullName);
             Assert.Equal(expectedUser.Company, result.Company);
             Assert.Equal(expectedUser.Blog, result.Blog);
-            Assert.Equal(expectedUser.Twitter, result.Twitter);
+            Assert.Equal(expectedUser.TwitterAccount, result.TwitterAccount);
             Assert.Equal(expectedUser.GitHubPage, result.GitHubPage);
             Assert.Equal(expectedUser.PublicRepos, result.PublicRepos);
             Assert.Equal(expectedUser.CreationDate, result.CreationDate);

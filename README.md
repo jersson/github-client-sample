@@ -46,33 +46,24 @@ public class GitHubConnector
 
     public GitHubConnector(): this(new RestClient()) {}
 
-    public GitHubConnector(IRestClient client){
-        var uri = new Uri("https://api.github.com/");
-
-        _restClient = client;
-        _restClient.BaseUrl = uri;
+    public GitHubConnector(IRestClient client)
+    {
+        this._restClient = client;
+        this._restClient.BaseUrl = new Uri("https://api.github.com/");
     }
-    public UserInformation GetUserInformation(string username)
+
+    private IRestResponse getGitHubResponse(string username)
     {
         var request = new RestRequest("users/{username}", Method.GET);
         request.AddUrlSegment("username", username);
-        
-        var gitHubResponse = _restClient.Execute(request);
-        dynamic gitHubObject = JsonConvert.DeserializeObject(gitHubResponse.Content);
 
-        var result = new UserInformation{
-            Login = gitHubObject.login,
-            FullName =  gitHubObject.name,
-            Company = gitHubObject.company,
-            Blog = gitHubObject.blog,
-            GitHubPage = gitHubObject.html_url, 
-            PublicRepos = gitHubObject.public_repos,
-            CreationDate = gitHubObject.created_at,
-            LastUpdate = gitHubObject.updated_at, 
-            Twitter = $"@{gitHubObject.twitter_username}"
-        };
+        return _restClient.Execute(request);
+    }
 
-        return result;
+    public UserInformation GetUserInformation(string username)
+    {
+        var gitHubResponse = getGitHubResponse(username);
+        return JsonConvert.DeserializeObject<UserInformation>(gitHubResponse.Content);
     }
 }
 ``` 
