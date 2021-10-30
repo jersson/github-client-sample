@@ -38,26 +38,26 @@ I've created this dotnetcore library as an example to show how to get github inf
 ## what does the code do?
 I've created a connector to the [GitHub API](https://developer.github.com/v3/), I'm using the [RestSharp](http://restsharp.org/getting-started/#basic-usage) library for get the information I need to consume and the [Json.NET](https://www.newtonsoft.com/json) library to serialize it.
 
-The `GitHubConnector` class contains all you need to get the required information.
+The `GitHubConnector` class contains all you need to get the required GitHub information.
 ```c#
 public class GitHubConnector
 {
-    private IRestClient _client { get; set; }
+    private IRestClient _restClient { get; set; }
 
     public GitHubConnector(): this(new RestClient()) {}
 
     public GitHubConnector(IRestClient client){
         var uri = new Uri("https://api.github.com/");
 
-        _client = client;
-        _client.BaseUrl = uri;
+        _restClient = client;
+        _restClient.BaseUrl = uri;
     }
     public UserInformation GetUserInformation(string username)
     {
         var request = new RestRequest("users/{username}", Method.GET);
         request.AddUrlSegment("username", username);
         
-        var gitHubResponse = _client.Execute(request);
+        var gitHubResponse = _restClient.Execute(request);
         dynamic gitHubObject = JsonConvert.DeserializeObject(gitHubResponse.Content);
 
         var result = new UserInformation{
