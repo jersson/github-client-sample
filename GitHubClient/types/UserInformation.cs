@@ -3,7 +3,7 @@ using System.Linq;
 
 namespace GitHubClient.Types
 {
-    public class GitHubUserInformation
+    public class UserInformation
     {
 
         public string Login { get; set; }
@@ -26,19 +26,15 @@ namespace GitHubClient.Types
         public override string ToString()
         {
             var builder = new StringBuilder();
-            // var builder2 = StringBuilder;
             var properties = this.GetType().GetProperties();
-
-            // properties.Aggregate((prop, next)  => $"* {prop.Name}: {prop.GetValue(this).ToString()}");
 
             foreach (var prop in properties)
             {
-                builder.AppendFormat("* {0}: {1}", prop.Name, prop.GetValue(this));
+                builder.Append(new UserInformationProperty(prop.Name, prop.GetValue(this).ToString()));
                 builder.AppendLine();
             }
             
-            var result = builder.ToString().Trim();
-            return result;
+            return builder.ToString().Trim();
         }
     }
 }

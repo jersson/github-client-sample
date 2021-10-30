@@ -19,16 +19,20 @@ I've created this dotnetcore library as an example to show how to get github inf
 ├── GitHubClient
 │   ├── GitHubClient.csproj
 │   ├── GitHubConnector.cs
-│   └── Types.cs
+│   └── types
+│       ├── UserInformation.cs
+│       └── UserInformationProperty.cs
 ├── GitHubClientTest
 │   ├── GitHubClientTest.csproj
-│   └── GitHubConnectorTest.cs
+│   ├── GitHubConnectorTest.cs
+│   └── types
+│       ├── UserInformationPropertyTest.cs
+│       └── UserInformationTest.cs
 ├── GitHubConsoleDemo
 │   ├── GitHubConsoleDemo.csproj
 │   └── Program.cs
 ├── README.md
-├── github-client-sample.sln
-└── sonar-project.properties
+└── github-client-sample.sln
 ```
 
 ## what does the code do?
@@ -48,7 +52,7 @@ public class GitHubConnector
         _client = client;
         _client.BaseUrl = uri;
     }
-    public GitHubUserInformation GetUserInformation(string username)
+    public UserInformation GetUserInformation(string username)
     {
         var request = new RestRequest("users/{username}", Method.GET);
         request.AddUrlSegment("username", username);
@@ -56,7 +60,7 @@ public class GitHubConnector
         var gitHubResponse = _client.Execute(request);
         dynamic gitHubObject = JsonConvert.DeserializeObject(gitHubResponse.Content);
 
-        var result = new GitHubUserInformation{
+        var result = new UserInformation{
             Login = gitHubObject.login,
             FullName =  gitHubObject.name,
             Company = gitHubObject.company,
@@ -65,7 +69,7 @@ public class GitHubConnector
             PublicRepos = gitHubObject.public_repos,
             CreationDate = gitHubObject.created_at,
             LastUpdate = gitHubObject.updated_at, 
-            Twitter = String.Format("@{0}",gitHubObject.twitter_username)
+            Twitter = $"@{gitHubObject.twitter_username}"
         };
 
         return result;
@@ -87,25 +91,25 @@ Time Elapsed 00:00:01.31
 This is a class library so you can run a console client I built, it's just an example and you can use the `dotnet run --project GitHubConsoleDemo` command in the root folder or the `dotnet run` command in the `GitHubConsoleDemo` folder:
 ```
 Put your GitHub username: jersson
-Hello jersson this is your GitHub information:
+Hello jersson, this is your GitHub information:
 * Login: jersson
 * FullName: Jersson Dongo
-* Company: McKinsey & Company
+* Company: @mckinsey
 * Blog: http://jersson.net
 * GitHubPage: https://github.com/jersson
-* PublicRepos: 12
+* PublicRepos: 26
 * CreationDate: 02/20/2012 01:07:28
-* LastUpdate: 06/16/2020 16:08:29
+* LastUpdate: 10/22/2021 14:29:46
 * Twitter: @jersson
 ```
 
 ## how to test the code?
 You can run the `dotnet test` command in the root folder or the test folder:
 ```
-Test Run Successful.
-Total tests: 1
-     Passed: 1
- Total time: 1.3628 Seconds
+Starting test execution, please wait...
+A total of 1 test files matched the specified pattern.
+
+Passed!  - Failed:     0, Passed:     3, Skipped:     0, Total:     3, Duration: 445 ms
 ```
 
 I'm using [**xUnit**](https://xunit.net/docs/getting-started/netcore/cmdline) for the test cases I've written and [**moq**](https://github.com/Moq/moq4/wiki/Quickstart) to mock the use of the `RestClient` object, this is a really [interesting post](https://softchris.github.io/pages/dotnet-moq.html) about moq. If you want to read about dependency injection, you can go to [this post](https://www.c-sharpcorner.com/UploadFile/85ed7a/dependency-injection-in-C-Sharp/).

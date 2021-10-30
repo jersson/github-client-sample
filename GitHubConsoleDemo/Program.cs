@@ -14,9 +14,9 @@ namespace GitHubConsoleDemo
             var username = Console.ReadLine();
 
             var connector = new GitHubConnector();
-            GitHubUserInformation gitHubInformation = connector.GetUserInformation(username);
+            UserInformation gitHubInformation = connector.GetUserInformation(username);
 
-            Console.WriteLine("Hello {0} this is your GitHub information:", username);
+            Console.WriteLine($"Hello {username}, this is your GitHub information:");
             Console.WriteLine(gitHubInformation);
         }
     }

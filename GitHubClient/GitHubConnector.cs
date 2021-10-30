@@ -8,25 +8,26 @@ namespace GitHubClient
 {
     public class GitHubConnector
     {
-        private IRestClient _client { get; set; }
+        private IRestClient _restClient { get; set; }
 
         public GitHubConnector(): this(new RestClient()) {}
 
         public GitHubConnector(IRestClient client){
             var uri = new Uri("https://api.github.com/");
 
-            _client = client;
-            _client.BaseUrl = uri;
+            this._restClient = client;
+            this._restClient.BaseUrl = uri;
         }
-        public GitHubUserInformation GetUserInformation(string username)
+
+        public UserInformation GetUserInformation(string username)
         {
             var request = new RestRequest("users/{username}", Method.GET);
             request.AddUrlSegment("username", username);
-            
-            var gitHubResponse = _client.Execute(request);
+
+            var gitHubResponse = _restClient.Execute(request);
             dynamic gitHubObject = JsonConvert.DeserializeObject(gitHubResponse.Content);
 
-            var result = new GitHubUserInformation{
+            var result = new UserInformation{
                 Login = gitHubObject.login,
                 FullName =  gitHubObject.name,
                 Company = gitHubObject.company,
@@ -35,7 +36,7 @@ namespace GitHubClient
                 PublicRepos = gitHubObject.public_repos,
                 CreationDate = gitHubObject.created_at,
                 LastUpdate = gitHubObject.updated_at,
-                Twitter = String.Format("@{0}",gitHubObject.twitter_username)
+                Twitter = $"@{gitHubObject.twitter_username}"
             };
 
             return result;
