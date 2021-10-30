@@ -1,4 +1,5 @@
 using System.Text;
+using System.Linq;
 
 namespace GitHubClient.Types
 {
@@ -25,7 +26,10 @@ namespace GitHubClient.Types
         public override string ToString()
         {
             var builder = new StringBuilder();
+            // var builder2 = StringBuilder;
             var properties = this.GetType().GetProperties();
+
+            // properties.Aggregate((prop, next)  => $"* {prop.Name}: {prop.GetValue(this).ToString()}");
 
             foreach (var prop in properties)
             {
