@@ -1,4 +1,4 @@
-name: GitHubClient Sample
+name: .net ci workflow
 
 on:
   push:
@@ -8,12 +8,10 @@ on:
 
 jobs:
   build:
-
     runs-on: ubuntu-latest
-
     steps:
     - uses: actions/checkout@v2
-    - name: Setup .NET Core
+    - name: Setup .NET
       uses: actions/setup-dotnet@v1
       with:
         dotnet-version: 5.0.x
@@ -21,22 +19,21 @@ jobs:
       uses: actions/setup-java@v1
       with:
         java-version: '14.0.1'
-    - name: Install dependencies
+    - name: Install project dependencies
       run: |
         dotnet tool install --global dotnet-sonarscanner --version 5.3.1
         dotnet restore
-    - name: Test
+    - name: Execute tests and generate coverage report
       run: dotnet test --no-restore --verbosity normal /p:CollectCoverage=true /p:CoverletOutputFormat=opencover
-    - name: Prepare Sonar scaner
+    - name: Build project
+      run: dotnet build --configuration Release --no-restore
+    - name: Prepare and start Sonar scaner
       run: dotnet sonarscanner begin /k:"${{ secrets.SONAR_PROJECT_KEY }}" 
             /d:sonar.host.url="${{ secrets.SONAR_HOST_URL }}" 
             /o:"${{ secrets.SONAR_ORGANIZATION_KEY }}" 
             /d:sonar.login="${{ secrets.SONAR_TOKEN }}" 
             /d:sonar.language="cs" 
             /d:sonar.cs.opencover.reportsPaths="./GitHubClientTest/coverage.opencover.xml" 
-            /d:sonar.exclusions="./GitHubConsoleDemo/**.**"
-    - name: Build
-      run: dotnet build --configuration Release --no-restore
     - name: Send information to Sonar host
       run: |
         export GITHUB_TOKEN=${{ secrets.GITHUB_TOKEN }}
