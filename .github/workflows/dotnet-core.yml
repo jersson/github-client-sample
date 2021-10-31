@@ -7,7 +7,7 @@ on:
     branches: [ master ]
 
 jobs:
-  build:
+  ci:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
@@ -25,8 +25,6 @@ jobs:
         dotnet restore
     - name: Execute tests and generate coverage report
       run: dotnet test --no-restore --verbosity normal /p:CollectCoverage=true /p:CoverletOutputFormat=opencover
-    - name: Build project
-      run: dotnet build --configuration Release --no-restore
     - name: Prepare and start Sonar scaner
       run: dotnet sonarscanner begin /k:"${{ secrets.SONAR_PROJECT_KEY }}" 
             /d:sonar.host.url="${{ secrets.SONAR_HOST_URL }}" 
@@ -34,6 +32,8 @@ jobs:
             /d:sonar.login="${{ secrets.SONAR_TOKEN }}" 
             /d:sonar.language="cs" 
             /d:sonar.cs.opencover.reportsPaths="./GitHubClientTest/coverage.opencover.xml" 
+    - name: Build project
+      run: dotnet build --configuration Release --no-restore
     - name: Send information to Sonar host
       run: |
         export GITHUB_TOKEN=${{ secrets.GITHUB_TOKEN }}
