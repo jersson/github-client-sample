@@ -9,7 +9,7 @@ defaults:
     working-directory: src
 
 jobs:
-  ci:
+  setup:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v3
@@ -20,6 +20,9 @@ jobs:
     - name: Install project dependencies
       run:
         dotnet restore
+  test:
+    runs-on: ubuntu-latest
+    steps:
     - name: Execute tests and generate coverage report
       run: dotnet test -l "console;verbosity=detailed"
     - name: Build project
