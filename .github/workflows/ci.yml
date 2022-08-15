@@ -20,10 +20,6 @@ jobs:
     - name: Install project dependencies
       run:
         dotnet restore
-  test:
-    needs: setup
-    runs-on: ubuntu-latest
-    steps:
     - name: Execute tests and generate coverage report
       run: dotnet test -l "console;verbosity=detailed"
     - name: Build project
