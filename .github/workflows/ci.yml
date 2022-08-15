@@ -21,6 +21,7 @@ jobs:
       run:
         dotnet restore
   test:
+    needs: setup
     runs-on: ubuntu-latest
     steps:
     - name: Execute tests and generate coverage report
