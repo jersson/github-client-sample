@@ -1,10 +1,12 @@
-name: .net ci workflow
+name: .net cd workflow
 
 on:
   push:
     branches: [ master ]
-  pull_request:
-    branches: [ master ]
+
+defaults:
+  run:
+    working-directory: src
 
 jobs:
   ci:
