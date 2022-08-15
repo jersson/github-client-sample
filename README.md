@@ -16,23 +16,13 @@ I've created this dotnetcore library as an example to show how to get github inf
 ## what's the folder structure?
 ```
 .
-├── GitHubClient
-│   ├── GitHubClient.csproj
-│   ├── GitHubConnector.cs
-│   └── types
-│       ├── UserInformation.cs
-│       └── UserInformationProperty.cs
-├── GitHubClientTest
-│   ├── GitHubClientTest.csproj
-│   ├── GitHubConnectorTest.cs
-│   └── types
-│       ├── UserInformationPropertyTest.cs
-│       └── UserInformationTest.cs
-├── GitHubConsoleDemo
-│   ├── GitHubConsoleDemo.csproj
-│   └── Program.cs
 ├── README.md
-└── github-client-sample.sln
+├── docs
+└── src
+    ├── GitHubClient
+    ├── GitHubClientTest
+    ├── GitHubConsoleDemo
+    └── github-client-sample.sln
 ```
 
 ## what does the code do?
@@ -69,7 +59,7 @@ public class GitHubConnector
 ``` 
 
 ## how to compile the code?
-You can use the `dotnet build` command in the root folder
+You can use the `dotnet build` command in the `./src` folder
 ```
 Build succeeded.
     0 Warning(s)
@@ -79,7 +69,7 @@ Time Elapsed 00:00:01.31
 ```
 
 ## how to run the code?
-This is a class library so you can run a console client I built, it's just an example and you can use the `dotnet run --project GitHubConsoleDemo` command in the root folder or the `dotnet run` command in the `GitHubConsoleDemo` folder:
+This is a class library so you can run a console client I built, it's just an example and you can use the `dotnet run --project GitHubConsoleDemo` command in the root folder or the `dotnet run` command in the `./src/GitHubConsoleDemo` folder:
 ```
 Put your GitHub username: jersson
 Hello jersson, this is your GitHub information:
@@ -95,7 +85,7 @@ Hello jersson, this is your GitHub information:
 ```
 
 ## how to test the code?
-You can run the `dotnet test` command in the root folder or the test folder:
+You can run the `dotnet test` command in the `./src` folder or the test folder:
 ```
 Starting test execution, please wait...
 A total of 1 test files matched the specified pattern.
@@ -108,7 +98,7 @@ I'm using [**xUnit**](https://xunit.net/docs/getting-started/netcore/cmdline) fo
 ## about the Sonar integration
 The last thing I've added to this project is the feature to send the information to a Sonar server. This is kinda open source project so I'm using the free access to [SonarSource](https://sonarcloud.io/dashboard?id=jersson_github-client-sample) but you can make the commercial way or install it locally (I mean, in your cloud) 
 
-You can check the [workflow file](.github/workflows/dotnet-core.yml) I've made using [GitHub Actions](https://github.com/features/actions), I thing it's easy to understand and of course, run it, but if you want to use it, don't forget to define at least these [GitHub Secrets](https://docs.github.com/en/actions/configuring-and-managing-workflows/creating-and-storing-encrypted-secrets):
+You can check the [cd workflow file](.github/workflows/cd.yml) I've made using [GitHub Actions](https://github.com/features/actions), I thing it's easy to understand and of course, run it, but if you want to use it, don't forget to define at least these [GitHub Secrets](https://docs.github.com/en/actions/configuring-and-managing-workflows/creating-and-storing-encrypted-secrets):
 
 - SONAR_HOST_URL
 - SONAR_ORGANIZATION_KEY
