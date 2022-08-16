@@ -18,6 +18,7 @@ I've created this dotnetcore library as an example to show how to get github inf
 .
 ├── README.md
 ├── docs
+│   └── pull_request_template.md
 └── src
     ├── GitHubClient
     ├── GitHubClientTest
