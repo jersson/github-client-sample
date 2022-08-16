@@ -2,7 +2,7 @@
 - feature, improvement, etc #1 (link to ticket)
 - feature, improvement, etc #2
 
-** Topics covered
+## Topics covered
 - [ ] new feature
 - [ ] improvement
 - [ ] fix
@@ -11,10 +11,10 @@
 - [ ] devops
 - [ ] test
 
-** To be verified
+## To be verified
 - [ ] linting
 - [ ] unit tests
 
-** Evidences
-Screenshots/links/test results/etc
+## Evidences
+Screenshots/links/test-results/etc
 
