@@ -60,8 +60,13 @@ public class GitHubConnector
 ``` 
 
 ## how to compile the code?
-You can use the `dotnet build` command in the `./src` folder
+You'll need to go into the `./src` folder and run this command:
+```bash
+$ dotnet build
 ```
+
+You'll see this result
+```bash
 Build succeeded.
     0 Warning(s)
     0 Error(s)
