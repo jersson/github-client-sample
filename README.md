@@ -6,12 +6,14 @@
 I've created this dotnetcore library as an example to show how to get github information. It's kinda one of my pet projects so please, be nice :innocent:
 
 ## Summary
-- [what's the folder structure?](#whats-the-folder-structure)
-- [what does the code do?](#what-does-the-code-do)
-- [how to compile the code?](#how-to-compile-the-code)
-- [how to run the code?](#how-to-run-the-code)
-- [how to test the code?](#how-to-test-the-code)
-- [about the sonar integration](#about-the-sonar-integration)
+- [github-client-sample](#github-client-sample)
+  - [Summary](#summary)
+  - [what's the folder structure?](#whats-the-folder-structure)
+  - [what does the code do?](#what-does-the-code-do)
+  - [how to compile the code?](#how-to-compile-the-code)
+  - [how to run the code?](#how-to-run-the-code)
+  - [how to test the code?](#how-to-test-the-code)
+  - [about the Sonar integration](#about-the-sonar-integration)
 
 ## what's the folder structure?
 ```
@@ -64,6 +66,8 @@ You'll need to go into the `./src` folder and run this command:
 ```bash
 $ dotnet build
 ```
+
+> dotnet 8.0 would be required :nerd_face:
 
 You'll see this result
 ```bash
